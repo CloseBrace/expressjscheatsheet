@@ -41,22 +41,29 @@ app.use(bodyParser.urlencoded({
 const posts= require('./routes/posts');
 app.use('/posts', posts);
 
-/* In /routes/posts.js ======================== */const express = require('express');
-const router = express.Router();
+/* In /routes/posts.js ======================== */
+const express = require('express');
+const router = express.Router();
+
 router.all('*', (req, res) => { // handler });
 router.delete('/remove', (req, res) => { // handler });
 router.get('/list', (req, res) => { // handler });
 router.param('id', (req, res, next, id) => { // handler });
 router.post('/add', (req, res) => { // handler });
-router.put('/update', (req, res) => { // handler });router.use('optional', (req, res) => { //middleware });module.exports = router;
+router.put('/update', (req, res) => { // handler });
+router.use('optional', (req, res) => { //middleware });
+
+module.exports = router;
 ```
 
 ## Request
 
 ```
 /* Request Header Info ====================== */
-req.baseUrl  // route root URL (/posts)req.hostname // app hostname (example.com)
-req.ip // app ip (127.0.0.1)req.method // request method (GET, POST, etc)
+req.baseUrl  // route root URL (/posts)
+req.hostname // app hostname (example.com)
+req.ip // app ip (127.0.0.1)
+req.method // request method (GET, POST, etc)
 req.path // path section of request URL
 req.protocol // http or https
 req.route // current route object
